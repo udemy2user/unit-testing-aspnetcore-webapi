@@ -46,6 +46,20 @@ namespace web_api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
+            var a = 5;
+
+            if(a == 1){
+              a = 1;
+            } else if(a == 2){
+              a = 2;
+            } else if(a == 3){
+              a = 3;
+            } else if(a == 4){
+              a = 4;
+            } else if(a == 5){
+              a = 5;
+            } 
+            
             var existingItem = _service.GetById(id);
             if (existingItem == null)
             {
