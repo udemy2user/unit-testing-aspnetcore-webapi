@@ -20,6 +20,13 @@ stages:
   jobs:
   - job: Build
     steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarConnection'
+        organization: 'mysonarcloudorganizationkeys'
+        scannerMode: 'MSBuild'
+        projectKey: 'mysonarcloudorganizationkeys'
+        projectName: 'APICoreSonarScanProject'
     - task: NuGetToolInstaller@1
 
     - task: NuGetCommand@2
@@ -47,3 +54,13 @@ stages:
           **\*Test.csproj
           **\*Tests.csproj
         arguments: --collect "Code Coverage"
+        
+    - task: SonarCloudAnalyze@1
+      displayName: 'Run Code Analysis'
+      inputs:
+        jdkversion: 'JAVA_HOME_11_X64'
+
+    - task: SonarCloudPublish@1
+      displayName: 'Publish Quality Gate Result'
+      inputs:
+        pollingTimeoutSec: '300'
