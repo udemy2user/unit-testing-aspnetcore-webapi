@@ -23,7 +23,7 @@ stages:
     - task: SonarCloudPrepare@1
       inputs:
         SonarCloud: 'SonarConnection'
-        organization: 'mysonarcloudorganizationkeys'
+        organization: 'mysonarcloudorganization'
         scannerMode: 'MSBuild'
         projectKey: 'mysonarcloudorganizationkeys'
         projectName: 'APICoreSonarScanProject'
